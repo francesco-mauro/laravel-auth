@@ -15,10 +15,12 @@ class PostsTableSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        $newPost = new Post();
-        $newPost->title = $faker->sentence(3);
-        $newPost->description = $faker->text(500);
-        $newPost->slug = Str::slug($newPost->title);
-        $newPost->save();
+        for ($i = 0; $i < 10; $i++) {
+            $newPost = new Post();
+            $newPost->title = $faker->sentence(3);
+            $newPost->description = $faker->text(500);
+            $newPost->slug = Str::slug($newPost->title);
+            $newPost->save();
+        }
     }
 }
