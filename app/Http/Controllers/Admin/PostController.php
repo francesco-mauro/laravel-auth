@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -30,7 +31,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+
+        $newPost = new Post();
+        $newPost->title = $request->title;
+        $newPost->description = $request->description;
+        $newPost->slug = Str::slug($request->title);
+        $newPost->save();
+
+        return redirect()->route('admin.posts.index');
     }
 
     /**
