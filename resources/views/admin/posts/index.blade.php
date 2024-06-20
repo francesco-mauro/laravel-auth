@@ -10,6 +10,7 @@
                     <th>ID</th>
                     <th>Title</th>
                     <th>Description</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +19,13 @@
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->description }}</td>
+                        <td>
+                            <a href="{{ route('admin.posts.show', $post) }}" class="btn btn-info">View</a>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
