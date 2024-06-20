@@ -22,14 +22,11 @@ Route::get('/', function () {
 
 
 Route::middleware('auth')
-->prefix('admin') //prefisso url gruppo
-->name('admin.') //inizio di ogni nome delle rotte del grupp
-->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('posts', [PostController::class, 'index'])->name('posts.index');
-    Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
-    Route::post('posts', [PostController::class, 'store'])->name('posts.store');
-    Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
-});
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('posts', PostController::class);
+    });
 
 require __DIR__.'/auth.php';

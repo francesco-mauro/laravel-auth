@@ -21,6 +21,8 @@
                         <td>{{ $post->description }}</td>
                         <td>
                             <a href="{{ route('admin.posts.show', $post) }}" class="btn btn-info">View</a>
+                            <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
